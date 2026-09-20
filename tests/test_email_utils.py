@@ -20,13 +20,32 @@ def test_email_type():
         is_valid_email(12345)
 
 
-# def test_mask_email():
-#
-#     email = "student@gmail.com"
-#
-#     assert mask_email(email) == "s*****t@gmail.com"
+def test_mask_email():
+
+    email = "student@gmail.com"
+
+    assert mask_email(email) == "s*****t@gmail.com"
 
 
 def test_gmail_domain():
 
     assert has_gmail_domain("student@gmail.com") == True
+
+
+def test_mask_email():
+    email = "student@gmail.com"
+    assert mask_email(email) == "s*****t@gmail.com"
+
+
+def test_mask_short_email():
+    email = "ab@gmail.com"
+    assert mask_email(email) == "a*@gmail.com"
+
+
+def test_non_gmail_domain():
+    assert has_gmail_domain("student@yahoo.com") == False
+
+
+def test_invalid_mask_email():
+    with pytest.raises(ValueError):
+        mask_email("student@gmail")
